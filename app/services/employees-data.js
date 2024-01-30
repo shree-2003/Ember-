@@ -6,6 +6,7 @@ export default class EmployeesDataService extends Service {
   @tracked editEmployee = '';
   @tracked deleteEmp = '';
   @tracked datas = A([]);
+  @tracked existing=false;
   updateEmployee(value){
     const isExisting=this.datas.findBy('eId',value.eId);
     if(isExisting){
@@ -15,9 +16,18 @@ export default class EmployeesDataService extends Service {
     this.updateToLocalStorage();
   }
   saveEmployee(value) {
+    let id=this.datas.findBy('eId',value.eId);
+    let email=this.datas.findBy('email',value.email);
+    let number=this.datas.findBy('mobileNumber',value.mobileNumber);
+    if(id||email||number){
+      this.existing=true;
+    }
+    if(!id&&!number&&!email){
+    this.existing=false;
     console.log(this.datas);
     this.datas.pushObject(value);
     this.updateToLocalStorage();
+    }
   }
   listEmployees() {
     this.getFromLocalStorage();
