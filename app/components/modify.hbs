@@ -8,8 +8,13 @@
     {{/if}}
 <div class="d-flex w-75">
 <div class="d-flex m-5 flex-column w-25 ">
-<label for="eId">Employee ID:</label>
-<Input @type="number" name="eId" id="eId" @value={{@model.eId}} min="1" {{on "change" this.updateData}} class="mb-4" />
+{{#if @add}}
+    <label for="eId">Employee ID:</label>
+    <Input @type="number" name="eId" id="eId" @value={{@model.eId}} min="1" {{on "change" this.updateData}} class="mb-4" /> 
+{{else}}
+    <label for="eId">Employee ID:</label>
+    <Input @type="number" name="eId" id="eId" @value={{@model.eId}} min="1" disabled {{on "change" this.updateData}} class="mb-4" /> 
+{{/if}}
 <label for="firstname">First Name:</label>
 <Input @type="text" name="firstname" id="firstname" @value={{@model.firstname}} {{on "change" this.updateData}} class="mb-4"/>
 <label for="lastname">Last Name:</label>
