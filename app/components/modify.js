@@ -7,6 +7,7 @@ export default class AddComponent extends Component {
   @service router;
   @tracked msg;
   @tracked add=this.args.add;
+  @tracked model=this.args.model;
   @tracked employeeDetails={
     eId:'',
     firstname: '',
@@ -73,7 +74,11 @@ export default class AddComponent extends Component {
   }
     else{
       const { name, value } = e.target;
-      this.employeeDetails = { ...this.employeeDetails, [name]: value };
+      if(name=='mobileNumber'){
+      console.log(this.employeesData.datas.findBy('mobileNumber',value));
+          console.log("iii");
+          console.log(this.model);
+      }
       if(name==='age'){
         if(value<18){
           alert('Age must be greater than 17');
@@ -87,14 +92,17 @@ export default class AddComponent extends Component {
           e.target.value='';
           this.employeeDetails.mobileNumber='';
         }
-        else if(this.employeesData.datas.findBy('mobileNumber',value)){
+        else if(this.employeesData.datas.findBy('mobileNumber',value) && this.model!==this.employeesData.datas.findBy('mobileNumber',value)){
+          console.log(this.employeesData.datas.findBy('mobileNumber',value));
+          console.log("iii");
+          console.log(this.model);
           alert('Mobile Number is already existing!!Check the available details');
           e.target.value='';
           this.employeeDetails.mobileNumber='';
         }
       }
       if(name==='email'){
-        if(this.employeesData.datas.findBy('email',value)){
+        if(this.employeesData.datas.findBy('email',value) && this.model!==this.employeesData.datas.findBy('email',value)){
           alert('Email ID is already existing!!Check the available details');
           e.target.value='';
           this.employeeDetails.email='';
@@ -119,7 +127,12 @@ export default class AddComponent extends Component {
   editData(){
     console.log(this.employeeDetails);
     this.employeesData.updateEmployee(this.employeeDetails);
+    if(this.model.eId&&this.model.firstname&&this.model.lastname&&this.model.age&&this.model.mobileNumber&&this.model.addr&&this.model.email&&this.model.dob&&this.model.doj&&this.model.qualification&&this.model.designation&&this.model.team&&this.model.shifttime&&this.model.location&&this.model.reporting){
     this.router.transitionTo('employees-list');
+    }
+    else{
+      alert('Enter all the details!!');
+    }
   }
   @action
   cancelButton(){
