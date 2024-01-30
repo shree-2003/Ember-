@@ -29,27 +29,33 @@ export default class AddComponent extends Component {
     if(name==='eId'){
       if(value<=0){
         alert('Enter a valid ID number'); 
+        e.target.value='';
       }
       else if(this.employeesData.datas.findBy('eId',value)){
         alert('ID is already existing!!Check the available details');
+        e.target.value='';
       }
     }
     if(name==='age'){
       if(value<18){
         alert('Age must be greater than 17');
+        e.target.value='';
       }
     }
     if(name==='mobileNumber'){
       if(value.length<9){
         alert('Mobile number must be 10 digits');
+        e.target.value='';
       }
       else if(this.employeesData.datas.findBy('mobileNumber',value)){
-        alert('Mobile Number is already existing!!Check the available details')
+        alert('Mobile Number is already existing!!Check the available details');
+        e.target.value='';
       }
     }
     if(name==='email'){
       if(this.employeesData.datas.findBy('email',value)){
         alert('Email ID is already existing!!Check the available details');
+        e.target.value='';
       }
     }
     this.employeeDetails = { ...this.employeeDetails, [name]: value };
