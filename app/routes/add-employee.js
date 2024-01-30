@@ -6,4 +6,5 @@ export default class EmployeesListAddEmployeeRoute extends Route {
   model() {
     return this.employeesData.listEmployees();
   }
+  
 }

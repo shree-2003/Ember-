@@ -8,11 +8,6 @@ export default class EmployeesDataService extends Service {
   @tracked datas = A([]);
   @tracked existing=false;
   updateEmployee(value){
-    const isExisting=this.datas.findBy('eId',value.eId);
-    if(isExisting){
-      console.log(value);
-      Object.assign(isExisting,value);
-    }
     this.updateToLocalStorage();
   }
   saveEmployee(value) {
