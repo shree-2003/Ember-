@@ -46,8 +46,8 @@ export default class AddComponent extends Component {
       }
     }
     if(name==='age'){
-      if(value<18){
-        alert('Age must be greater than 17');
+      if(value<18 || value>80){
+        alert('Age must be greater than 17 and less than 80');
         e.target.value='';
         this.employeeDetails.age='';
       }
@@ -80,8 +80,8 @@ export default class AddComponent extends Component {
           console.log(this.model);
       }
       if(name==='age'){
-        if(value<18){
-          alert('Age must be greater than 17');
+        if(value<18 || value>80){
+          alert('Age must be greater than 17 and less tha 80');
           e.target.value='';
           this.employeeDetails.age='';
         }
@@ -126,8 +126,8 @@ export default class AddComponent extends Component {
   @action
   editData(){
     console.log(this.employeeDetails);
-    this.employeesData.updateEmployee(this.employeeDetails);
     if(this.model.eId&&this.model.firstname&&this.model.lastname&&this.model.age&&this.model.mobileNumber&&this.model.addr&&this.model.email&&this.model.dob&&this.model.doj&&this.model.qualification&&this.model.designation&&this.model.team&&this.model.shifttime&&this.model.location&&this.model.reporting){
+    this.employeesData.updateEmployee(this.employeeDetails);
     this.router.transitionTo('employees-list');
     }
     else{
