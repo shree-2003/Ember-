@@ -28,6 +28,7 @@ export default class AddComponent extends Component {
   @action
   updateData(e){
     if(this.add){
+      console.log(this.add);
     const { name, value } = e.target;
     this.employeeDetails = { ...this.employeeDetails, [name]: value };
     console.log(this.employeeDetails);
@@ -74,10 +75,12 @@ export default class AddComponent extends Component {
   }
     else{
       const { name, value } = e.target;
-      if(name=='mobileNumber'){
-      console.log(this.employeesData.datas.findBy('mobileNumber',value));
+      console.log(this.add);
+      console.log(name);
+      if(name==='mobileNumber'){
+      /*console.log(this.employeesData.datas.findBy('mobileNumber',value));
           console.log("iii");
-          console.log(this.model);
+          console.log(this.model);*/
       }
       if(name==='age'){
         if(value<18 || value>80){
@@ -87,6 +90,7 @@ export default class AddComponent extends Component {
         }
       }
       if(name==='mobileNumber'){
+        console.log(name);
         if(value.length!=10){
           alert('Mobile number must be 10 digits');
           e.target.value='';
@@ -100,6 +104,9 @@ export default class AddComponent extends Component {
           e.target.value='';
           this.employeeDetails.mobileNumber='';
         }
+        console.log(this.employeesData.datas.findBy('mobileNumber',value));
+        console.log("iii");
+        console.log(this.model);
       }
       if(name==='email'){
         if(this.employeesData.datas.findBy('email',value) && this.model!==this.employeesData.datas.findBy('email',value)){
@@ -127,9 +134,21 @@ export default class AddComponent extends Component {
   editData(){
     console.log(this.employeeDetails);
     if(this.model.eId&&this.model.firstname&&this.model.lastname&&this.model.age&&this.model.mobileNumber&&this.model.addr&&this.model.email&&this.model.dob&&this.model.doj&&this.model.qualification&&this.model.designation&&this.model.team&&this.model.shifttime&&this.model.location&&this.model.reporting){
-    this.employeesData.updateEmployee(this.employeeDetails);
-    this.router.transitionTo('employees-list');
-    }
+      if(this.employeesData.datas.findBy('email',this.model.email) && (this.model!==this.employeesData.datas.findBy('email',this.model.email))){
+        alert('Email ID is already existing!!Check the available details');
+        e.target.value='';
+        this.employeeDetails.email='';
+      }
+      else if(this.employeesData.datas.findBy('mobileNumber',this.model.mobileNumber) && (this.model!==this.employeesData.datas.findBy('mobileNumber',this.model.mobileNumber))){
+        alert('Mobile Number is already existing!!Check the available details');
+        e.target.value='';
+        this.employeeDetails.mobileNumber='';
+      }
+      else{
+        this.employeesData.updateEmployee(this.employeeDetails);
+        this.router.transitionTo('employees-list');
+      }
+  }
     else{
       alert('Enter all the details!!');
     }

@@ -20,7 +20,7 @@
 <label for="lastname">Last Name:</label>
 <Input @type="text" name="lastname" id="lastname" maxlength="15" @value={{@model.lastname}} {{on "change" this.updateData}} class="mb-4"/>
 <label for="email">Email:</label>
-<input type="email" name="email" id="email" maxlength="30" value={{@model.email}} {{on "change" this.updateData}} class="mb-4">
+<Input @type="email" name="email" id="email" maxlength="30" @value={{@model.email}} {{on "change" this.updateData}} class="mb-4"/>
 </div>
 <div class="d-flex m-5 flex-column w-25 ">
 <label for="dob">Date of Birth:</label>
