@@ -27,9 +27,9 @@ export default class AddComponent extends Component {
   };
   @action
   updateData(e){
+    const { name, value } = e.target;
     if(this.add){
       console.log(this.add);
-    const { name, value } = e.target;
     this.employeeDetails = { ...this.employeeDetails, [name]: value };
     console.log(this.employeeDetails);
     if(name==='eId'){
@@ -46,6 +46,7 @@ export default class AddComponent extends Component {
         this.employeeDetails.eId='';
       }
     }
+  }
     if(name==='age'){
       if(value<18 || value>80){
         alert('Age must be greater than 17 and less than 80');
@@ -70,50 +71,6 @@ export default class AddComponent extends Component {
         alert('Email ID is already existing!!Check the available details');
         e.target.value='';
         this.employeeDetails.email='';
-      }
-    }
-  }
-    else{
-      const { name, value } = e.target;
-      console.log(this.add);
-      console.log(name);
-      if(name==='mobileNumber'){
-      /*console.log(this.employeesData.datas.findBy('mobileNumber',value));
-          console.log("iii");
-          console.log(this.model);*/
-      }
-      if(name==='age'){
-        if(value<18 || value>80){
-          alert('Age must be greater than 17 and less tha 80');
-          e.target.value='';
-          this.employeeDetails.age='';
-        }
-      }
-      if(name==='mobileNumber'){
-        console.log(name);
-        if(value.length!=10){
-          alert('Mobile number must be 10 digits');
-          e.target.value='';
-          this.employeeDetails.mobileNumber='';
-        }
-        else if(this.employeesData.datas.findBy('mobileNumber',value) && this.model!==this.employeesData.datas.findBy('mobileNumber',value)){
-          console.log(this.employeesData.datas.findBy('mobileNumber',value));
-          console.log("iii");
-          console.log(this.model);
-          alert('Mobile Number is already existing!!Check the available details');
-          e.target.value='';
-          this.employeeDetails.mobileNumber='';
-        }
-        console.log(this.employeesData.datas.findBy('mobileNumber',value));
-        console.log("iii");
-        console.log(this.model);
-      }
-      if(name==='email'){
-        if(this.employeesData.datas.findBy('email',value) && this.model!==this.employeesData.datas.findBy('email',value)){
-          alert('Email ID is already existing!!Check the available details');
-          e.target.value='';
-          this.employeeDetails.email='';
-        }
       }
     }
   }
