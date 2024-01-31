@@ -1,7 +1,7 @@
-import Component from '@glimmer/component';
+import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-export default class ListComponent extends Component {
+export default class EmployeesListController extends Controller {
   @service employeesData;
   @service router;
   @action
