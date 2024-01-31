@@ -10,8 +10,8 @@ module('Acceptance | application', function (hooks) {
     await click('[data-test-button]');
     await visit('add-employee');
     assert.equal(currentURL(), '/add-employee');
+    await click('[data-save-button]');
     await visit('employees-list');
-    assert.equal(currentURL(),'/employees-list');
-    await this.pauseTest();
+    assert.equal(currentURL(),'employees-list');
   });
 });

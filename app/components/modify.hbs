@@ -77,6 +77,6 @@
 {{else}}
     <button type="button" {{on "click" this.saveData }} class="bg-success border-0 text-center ml-5 px-4 py-2 saveButton">Save</button>
 {{/if}}
-<button type="button" {{on "click" this.cancelButton}} class="bg-danger border-0 text-center ml-5 px-4 py-2 saveButton">Cancel</button>
+<button data-cancel-button type="button" {{on "click" this.cancelButton}} class="bg-danger border-0 text-center ml-5 px-4 py-2 saveButton">Cancel</button>
 </div>
 </form>
